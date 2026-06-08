@@ -4,402 +4,44 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mohammed Elmouge - CV</title>
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link id="theme-css" rel="stylesheet" href="">
 <link rel="stylesheet" href="cv.css">
 <style>
+  .theme-selector { display: flex; gap: 8px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+  .theme-btn { padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); font-size: 13px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+  .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .theme-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
   #loading { text-align: center; padding: 80px 20px; color: var(--text-dim, #64748b); font-size: 18px; }
 </style>
 </head>
 <body>
-
 <div class="container" id="app">
   <div id="loading">Loading CV...</div>
 </div>
 
-<button class="settings-btn" id="settingsBtn" onclick="openSettings()" aria-label="Settings">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-  </svg>
-</button>
-
-<div class="settings-overlay" id="settingsOverlay" onclick="closeSettings()"></div>
-
-<div class="settings-panel" id="settingsPanel">
-  <button class="settings-close" onclick="closeSettings()">&times;</button>
-  <h2>Settings</h2>
-  <p class="sub">Customize your CV appearance</p>
-
-  <div class="settings-group">
-    <label>Theme</label>
-    <div id="themeOptions"></div>
-  </div>
-
-  <div class="settings-group">
-    <label>Font Size</label>
-    <div class="font-btn-group" id="fontOptions"></div>
-  </div>
-
-  <div class="settings-group">
-    <label>View Mode</label>
-    <div id="viewModeOptions"></div>
-  </div>
-
-  <div class="settings-group" style="border-top:1px solid var(--border);padding-top:16px">
-    <label>Layout</label>
-    <div id="layoutOptions"></div>
-  </div>
-
-  <div class="settings-group">
-    <label>Section Visibility <span class="hint">(hide sections for printing)</span></label>
-    <div class="toggle-group" id="sectionToggles"></div>
-  </div>
-
-  <div class="settings-group" style="border-top:1px solid var(--border);padding-top:16px">
-    <label>Section Order <span class="hint">(drag to reorder)</span></label>
-    <div id="sectionOrderList"></div>
-  </div>
-
-  <div class="settings-group" style="padding-top:8px;border-top:1px solid var(--border)">
-    <button onclick="resetDefaults()" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-muted);cursor:pointer;font-family:inherit;font-size:13px;transition:all 0.2s;" onmouseenter="this.style.borderColor=getComputedStyle(this).getPropertyValue('--accent').trim();this.style.color=getComputedStyle(this).getPropertyValue('--accent').trim()" onmouseleave="this.style.borderColor='';this.style.color=''">Reset to Defaults</button>
-  </div>
-</div>
-
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-  <button class="lightbox-close" onclick="closeLightbox()">Close</button>
-  <img class="lightbox-img" id="lightboxImg" src="" alt="">
-  <span class="lightbox-label" id="lightboxLabel"></span>
-</div>
-
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').catch(() => {});
-}
-</script>
 <script>
 const THEMES = {
-  dark:  { file: 'theme-dark.css', label: 'Dark', preview: '#0f172a', accent: '#3b82f6', icon: 'D' },
-  light: { file: 'theme-light.css', label: 'Light', preview: '#ffffff', accent: '#2563eb', icon: 'L' },
-  ocean: { file: 'theme-ocean.css', label: 'Ocean', preview: '#0c1a2e', accent: '#06b6d4', icon: 'O' }
+  dark: 'theme-dark.css',
+  light: 'theme-light.css',
+  ocean: 'theme-ocean.css'
 };
 
-const FONT_SIZES = [
-  { key: 'sm', label: 'Small', desc: 'Compact' },
-  { key: 'md', label: 'Medium', desc: 'Default' },
-  { key: 'lg', label: 'Large', desc: 'Relaxed' }
-];
-
-const VIEW_MODES = [
-  { key: 'standard', label: 'Standard', desc: 'Cards with borders', icon: '⊟' },
-  { key: 'minimal', label: 'Minimal', desc: 'Clean & borderless', icon: '⊡' },
-  { key: 'modern', label: 'Modern', desc: 'Rounded & shadowed', icon: '⬜' },
-  { key: 'timeline', label: 'Timeline', desc: 'Vertical timeline flow', icon: '⊦' },
-  { key: 'grid', label: 'Grid', desc: 'Multi-column grid', icon: '⊞' },
-  { key: 'classic', label: 'Classic', desc: 'Traditional resume', icon: '☰' }
-];
-
-const SECTIONS = ['summary', 'skills', 'projects', 'experience', 'education', 'languages'];
-
-let cvData = null;
-let defaults = {};
-let settings = {};
-let themeLinkEl = null;
-
-function openLightbox(src, name) {
-  document.getElementById('lightboxImg').src = src;
-  document.getElementById('lightboxLabel').textContent = name;
-  document.getElementById('lightbox').classList.add('open');
-}
-
-function closeLightbox(ev) {
-  if (ev && ev.target !== document.getElementById('lightboxImg') && ev.target !== document.getElementById('lightboxLabel')) {
-    document.getElementById('lightbox').classList.remove('open');
-    return;
-  }
-  if (!ev) document.getElementById('lightbox').classList.remove('open');
-}
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
-});
-
 function loadCSS(href) {
-  if (!themeLinkEl) { themeLinkEl = document.getElementById('theme-css'); }
-  themeLinkEl.href = href;
+  const link = document.getElementById('theme-css');
+  link.href = href;
 }
 
-function saveSettings() {
-  try { localStorage.setItem('cv-settings', JSON.stringify(settings)); } catch(e) {}
-}
-
-function loadSettings() {
-  settings = JSON.parse(JSON.stringify(defaults));
-  try {
-    const saved = localStorage.getItem('cv-settings');
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      Object.keys(defaults).forEach(k => {
-        if (parsed[k] !== undefined) {
-          if (typeof defaults[k] === 'object' && defaults[k] !== null && !Array.isArray(defaults[k])) {
-            Object.assign(settings[k], parsed[k]);
-          } else {
-            settings[k] = parsed[k];
-          }
-        }
-      });
-    }
-  } catch(e) {}
-}
-
-function applyCompact(val) {
-  document.querySelector('.container').classList.toggle('compact', val);
-  settings.compact = val;
-  saveSettings();
-}
-
-function applyShowAvatar(val) {
-  document.querySelectorAll('.avatar').forEach(el => el.style.display = val ? '' : 'none');
-  settings.showAvatar = val;
-  saveSettings();
-}
-
-function applyShowProjectLinks(val) {
-  document.querySelectorAll('.project-link').forEach(el => el.style.display = val ? '' : 'none');
-  settings.showProjectLinks = val;
-  saveSettings();
-}
-
-function resetDefaults() {
-  localStorage.removeItem('cv-settings');
-  loadSettings();
-  loadCSS(THEMES[settings.theme].file);
-  applyFontSize(settings.fontSize);
-  applyViewMode(settings.viewMode);
-  applyCompact(settings.compact);
-  applyShowAvatar(settings.showAvatar);
-  applyShowProjectLinks(settings.showProjectLinks);
-  renderThemes();
-  renderFontSizes();
-  renderViewModes();
-  renderLayoutOptions();
-  renderToggles();
-  renderSectionOrder();
-  reorderSectionsDOM();
-  SECTIONS.forEach(s => toggleSection(s, settings.visible[s]));
-}
-
-function applyFontSize(key) {
-  const sizes = { sm: '13px', md: '15px', lg: '17px' };
-  const scale = { sm: 0.9, md: 1, lg: 1.1 };
-  document.querySelectorAll('.project p, .exp-content p, .summary').forEach(el => {
-    el.style.fontSize = sizes[key];
-  });
-  settings.fontSize = key;
-  saveSettings();
-}
-
-const SEC_LABELS = { summary:'Summary', skills:'Skills', projects:'Projects', experience:'Experience', education:'Education', languages:'Languages' };
-const SEC_COLORS = { summary: '#3b82f6', skills: '#8b5cf6', projects: '#06b6d4', experience: '#10b981', education: '#f59e0b', languages: '#ec4899' };
-
-let dragSrcIdx = null;
-
-function renderSectionOrder() {
-  const container = document.getElementById('sectionOrderList');
-  container.innerHTML = settings.sectionOrder.map((key, idx) => `
-    <div class="section-order-item" draggable="true" data-idx="${idx}" data-key="${key}">
-      <span class="drag-handle">⠿</span>
-      <span class="drag-vis" style="background:${SEC_COLORS[key] || 'var(--accent)'}"></span>
-      <span class="drag-label">${SEC_LABELS[key] || key}</span>
-    </div>
-  `).join('');
-
-  container.querySelectorAll('.section-order-item').forEach(el => {
-    el.addEventListener('dragstart', function(e) {
-      dragSrcIdx = parseInt(this.dataset.idx);
-      this.classList.add('dragging');
-      e.dataTransfer.effectAllowed = 'move';
-    });
-    el.addEventListener('dragend', function() {
-      this.classList.remove('dragging');
-      container.querySelectorAll('.section-order-item').forEach(i => i.classList.remove('drag-over'));
-    });
-    el.addEventListener('dragover', function(e) {
-      e.preventDefault(); e.dataTransfer.dropEffect = 'move';
-    });
-    el.addEventListener('dragenter', function(e) {
-      e.preventDefault(); this.classList.add('drag-over');
-    });
-    el.addEventListener('dragleave', function() {
-      this.classList.remove('drag-over');
-    });
-    el.addEventListener('drop', function(e) {
-      e.preventDefault(); this.classList.remove('drag-over');
-      const targetIdx = parseInt(this.dataset.idx);
-      if (dragSrcIdx === null || dragSrcIdx === targetIdx) return;
-      const order = settings.sectionOrder;
-      const [moved] = order.splice(dragSrcIdx, 1);
-      order.splice(targetIdx, 0, moved);
-      dragSrcIdx = null;
-      settings.sectionOrder = order;
-      saveSettings();
-      renderSectionOrder();
-      reorderSectionsDOM();
-    });
-  });
-}
-
-function reorderSectionsDOM() {
-  const body = document.querySelector('.body');
-  const sections = body.querySelectorAll('section');
-  const orderMap = {};
-  settings.sectionOrder.forEach((key, idx) => { orderMap[key] = idx; });
-  const sorted = Array.from(sections).sort((a, b) => {
-    const ka = a.getAttribute('data-section');
-    const kb = b.getAttribute('data-section');
-    return (orderMap[ka] || 0) - (orderMap[kb] || 0);
-  });
-  sorted.forEach(s => body.appendChild(s));
-}
-
-function toggleSection(key, show) {
-  settings.visible[key] = show;
-  const els = document.querySelectorAll(`[data-section="${key}"]`);
-  els.forEach(el => el.style.display = show ? '' : 'none');
-  const btn = document.querySelector(`#sectionToggles .toggle-row:nth-child(${SECTIONS.indexOf(key) + 1}) .toggle-switch`);
-  if (btn) btn.classList.toggle('on', show);
-  saveSettings();
-}
-
-function renderThemes() {
-  const container = document.getElementById('themeOptions');
-  container.innerHTML = Object.entries(THEMES).map(([key, t]) => `
-    <div class="theme-option${settings.theme === key ? ' active' : ''}" onclick="selectTheme('${key}')">
-      <div class="preview" style="background:${t.preview};color:${t.accent};border:2px solid ${t.accent}">${t.icon}</div>
-      <div class="info">
-        <strong>${t.label}</strong>
-        <span>${key === 'dark' ? 'Bold & elegant' : key === 'light' ? 'Clean & professional' : 'Deep & serene'}</span>
-      </div>
-      <span class="check">&#10003;</span>
-    </div>
-  `).join('');
-}
-
-function selectTheme(key) {
-  settings.theme = key;
-  loadCSS(THEMES[key].file);
-  document.querySelectorAll('.theme-option').forEach((el, i) => {
-    el.classList.toggle('active', Object.keys(THEMES)[i] === key);
-  });
-  saveSettings();
-}
-
-function renderFontSizes() {
-  const container = document.getElementById('fontOptions');
-  container.innerHTML = FONT_SIZES.map(f => `
-    <button class="font-btn${settings.fontSize === f.key ? ' active' : ''}" onclick="selectFontSize('${f.key}')">
-      ${f.label}
-      <span class="demo ${f.key}">Aa</span>
-    </button>
-  `).join('');
-}
-
-function selectFontSize(key) {
-  applyFontSize(key);
-  document.querySelectorAll('.font-btn').forEach((el, i) => {
-    el.classList.toggle('active', FONT_SIZES[i].key === key);
-  });
-}
-
-function applyViewMode(key) {
-  const c = document.querySelector('.container');
-  c.classList.remove('view-standard', 'view-minimal', 'view-modern');
-  c.classList.add('view-' + key);
-  settings.viewMode = key;
-  saveSettings();
-}
-
-function renderViewModes() {
-  const container = document.getElementById('viewModeOptions');
-  container.innerHTML = VIEW_MODES.map(v => `
-    <div class="theme-option${settings.viewMode === v.key ? ' active' : ''}" onclick="selectViewMode('${v.key}')">
-      <div class="preview" style="background:var(--bg-card);color:var(--accent);border:2px solid var(--border);font-size:18px">${v.icon}</div>
-      <div class="info">
-        <strong>${v.label}</strong>
-        <span>${v.desc}</span>
-      </div>
-      <span class="check">&#10003;</span>
-    </div>
-  `).join('');
-}
-
-function selectViewMode(key) {
-  applyViewMode(key);
-  document.querySelectorAll('#viewModeOptions .theme-option').forEach((el, i) => {
-    el.classList.toggle('active', VIEW_MODES[i].key === key);
-  });
-}
-
-const LAYOUT_OPTS = [
-  { key: 'compact', label: 'Compact Mode', desc: 'Tighter spacing for more content', icon: '⊞' },
-  { key: 'showAvatar', label: 'Show Avatar', desc: 'Display profile photo / monogram', icon: '👤' },
-  { key: 'showProjectLinks', label: 'Project Links', desc: 'Show GitHub links on projects', icon: '🔗' }
-];
-
-function renderLayoutOptions() {
-  const container = document.getElementById('layoutOptions');
-  container.innerHTML = LAYOUT_OPTS.map(o => `
-    <div class="toggle-row">
-      <div><span style="font-weight:600">${o.label}</span><br><span style="font-size:12px;color:var(--text-dim)">${o.desc}</span></div>
-      <button class="toggle-switch${settings[o.key] ? ' on' : ''}" onclick="toggleLayout('${o.key}')"></button>
-    </div>
-  `).join('');
-}
-
-function toggleLayout(key) {
-  const val = !settings[key];
-  if (key === 'compact') applyCompact(val);
-  else if (key === 'showAvatar') applyShowAvatar(val);
-  else if (key === 'showProjectLinks') applyShowProjectLinks(val);
-  const idx = LAYOUT_OPTS.findIndex(o => o.key === key) + 1;
-  const btn = document.querySelector(`#layoutOptions .toggle-row:nth-child(${idx}) .toggle-switch`);
-  if (btn) btn.classList.toggle('on', val);
-}
-
-function renderToggles() {
-  const container = document.getElementById('sectionToggles');
-  const labels = { summary:'Summary', skills:'Skills', projects:'Projects', experience:'Experience', education:'Education', languages:'Languages' };
-  container.innerHTML = SECTIONS.map(s => `
-    <div class="toggle-row">
-      <span>${labels[s]}</span>
-      <button class="toggle-switch${settings.visible[s] ? ' on' : ''}" onclick="toggleSection('${s}', ${!settings.visible[s]})"></button>
-    </div>
-  `).join('');
-}
-
-function openSettings() {
-  document.getElementById('settingsOverlay').classList.add('open');
-  document.getElementById('settingsPanel').classList.add('open');
-  renderThemes();
-  renderFontSizes();
-  renderViewModes();
-  renderLayoutOptions();
-  renderToggles();
-  renderSectionOrder();
-}
-
-function closeSettings() {
-  document.getElementById('settingsOverlay').classList.remove('open');
-  document.getElementById('settingsPanel').classList.remove('open');
+function setTheme(name) {
+  loadCSS(THEMES[name]);
+  document.querySelectorAll('.theme-btn').forEach(b => b.classList.toggle('active', b.dataset.theme === name));
 }
 
 function renderCV(data) {
-  cvData = data;
+  const app = document.getElementById('app');
   const p = data.personal;
 
-  let projectsHTML = (data.projects || []).map(pr => `
-    <div class="project" data-section="projects">
+  let projectsHTML = data.projects.map(pr => `
+    <div class="project">
       <div class="project-header">
         <h3>${pr.name}</h3>
         ${pr.url ? `<a href="${pr.url}" target="_blank" class="project-link">github ↗</a>` : ''}
@@ -410,15 +52,15 @@ function renderCV(data) {
     </div>
   `).join('');
 
-  let skillsHTML = (data.skills || []).map(s => `
-    <div class="skill-cat" data-section="skills">
+  let skillsHTML = data.skills.map(s => `
+    <div class="skill-cat">
       <h4>${s.category}</h4>
       <div class="skill-tags">${s.tags.map(t => `<span class="skill-tag">${t}</span>`).join('')}</div>
     </div>
   `).join('');
 
-  let expHTML = (data.experience || []).map(e => `
-    <div class="exp-item" data-section="experience">
+  let expHTML = data.experience.map(e => `
+    <div class="exp-item">
       <div class="exp-dot"></div>
       <div class="exp-content">
         <h3>${e.title}</h3>
@@ -428,18 +70,23 @@ function renderCV(data) {
     </div>
   `).join('');
 
-  let eduHTML = (data.education || []).map(e => `
-    <div class="ed-item" data-section="education">
+  let eduHTML = data.education.map(e => `
+    <div class="ed-item">
       <h3>${e.degree}</h3>
       <div class="meta">${e.meta}</div>
     </div>
   `).join('');
 
-  let langHTML = (data.languages || []).map(l => `
-    <div class="lang-item" data-section="languages"><span class="lang-name">${l.name}</span><span class="lang-level">${l.level}</span></div>
+  let langHTML = data.languages.map(l => `
+    <div class="lang-item"><span class="lang-name">${l.name}</span><span class="lang-level">${l.level}</span></div>
   `).join('');
 
+  let themeBtns = Object.keys(THEMES).map(t =>
+    `<button class="theme-btn${t === data.theme ? ' active' : ''}" data-theme="${t}" onclick="setTheme('${t}')">${t.toUpperCase()}</button>`
+  ).join('');
+
   app.innerHTML = `
+    <div style="padding:20px 48px 0;text-align:center">${themeBtns}</div>
     <div class="header">
       <div class="header-content">
         <div>
@@ -453,45 +100,48 @@ function renderCV(data) {
             <a href="${p.github}" target="_blank">github.com/jminoktit</a>
           </div>
         </div>
-        ${p.photo ? `<img class="avatar" src="${p.photo}" alt="${p.name}" onclick="openLightbox('${p.photo}','${p.name}')" onerror="this.outerHTML='<div class=avatar>${p.monogram}</div>'">` : `<div class="avatar">${p.monogram}</div>`}
+        <div class="avatar">${p.monogram}</div>
       </div>
     </div>
     <div class="body">
-      ${settings.sectionOrder.map(key => {
-        switch(key) {
-          case 'summary': return `<section data-section="summary"><div class="section-title">Summary</div><div class="summary">${data.summary}</div></section>`;
-          case 'skills': return `<section data-section="skills"><div class="section-title">Skills</div><div class="skills-grid">${skillsHTML}</div></section>`;
-          case 'projects': return `<section data-section="projects"><div class="section-title">Projects</div>${projectsHTML}</section>`;
-          case 'experience': return `<section data-section="experience"><div class="section-title">Experience</div>${expHTML}</section>`;
-          case 'education': return `<section data-section="education"><div class="section-title">Education</div>${eduHTML}</section>`;
-          case 'languages': return `<section data-section="languages"><div class="section-title">Languages</div>${langHTML}</section>`;
-          default: return '';
-        }
-      }).join('')}
+      <section>
+        <div class="section-title">Summary</div>
+        <div class="summary">${data.summary}</div>
+      </section>
+      <section>
+        <div class="section-title">Skills</div>
+        <div class="skills-grid">${skillsHTML}</div>
+      </section>
+      <section>
+        <div class="section-title">Projects</div>
+        ${projectsHTML}
+      </section>
+      <section>
+        <div class="section-title">Experience</div>
+        ${expHTML}
+      </section>
+      <section>
+        <div class="section-title">Education</div>
+        ${eduHTML}
+      </section>
+      <section>
+        <div class="section-title">Languages</div>
+        ${langHTML}
+      </section>
     </div>
   `;
 
-  loadCSS(THEMES[settings.theme]?.file || THEMES.dark.file);
-  applyFontSize(settings.fontSize);
-  applyViewMode(settings.viewMode);
-  applyCompact(settings.compact);
-  applyShowAvatar(settings.showAvatar);
-  applyShowProjectLinks(settings.showProjectLinks);
-  SECTIONS.forEach(s => {
-    if (!settings.visible[s]) toggleSection(s, false);
-  });
+  loadCSS(THEMES[data.theme] || THEMES.dark);
 }
-
-const app = document.getElementById('app');
 
 fetch('cv-data.json')
   .then(r => r.json())
-  .then(data => { defaults = data.defaults; loadSettings(); renderCV(data); })
+  .then(data => renderCV(data))
   .catch(err => {
-    app.innerHTML = `
+    document.getElementById('app').innerHTML = `
       <div style="padding:40px;text-align:center;color:var(--text-dim,#64748b)">
         <p style="font-size:18px;margin-bottom:12px;">Could not load cv-data.json</p>
-        <p style="font-size:14px">${err.message}</p>
+        <p style="font-size:14px;color:var(--text-dim,#64748b)">${err.message}</p>
       </div>`;
   });
 </script>

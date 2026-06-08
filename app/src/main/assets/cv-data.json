@@ -1,25 +1,8 @@
 {
-  "defaults": {
-    "theme": "dark",
-    "fontSize": "md",
-    "compact": false,
-    "viewMode": "standard",
-    "showAvatar": true,
-    "showProjectLinks": true,
-    "visible": {
-      "summary": true,
-      "skills": true,
-      "projects": true,
-      "experience": true,
-      "education": true,
-      "languages": true
-    },
-    "sectionOrder": ["summary", "skills", "projects", "experience", "education", "languages"]
-  },
+  "theme": "dark",
   "personal": {
     "name": "Mohammed Elmouge",
     "monogram": "ME",
-    "photo": "myphoto.jpeg",
     "title": "Full-Stack Developer",
     "subtitle": "Python \u00b7 Django \u00b7 React \u00b7 Vue \u00b7 AI/ML",
     "email": "jakjak200018@gmail.com",
