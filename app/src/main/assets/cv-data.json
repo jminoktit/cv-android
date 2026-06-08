@@ -1,0 +1,127 @@
+{
+  "defaults": {
+    "theme": "dark",
+    "fontSize": "md",
+    "compact": false,
+    "viewMode": "standard",
+    "showAvatar": true,
+    "showProjectLinks": true,
+    "visible": {
+      "summary": true,
+      "skills": true,
+      "projects": true,
+      "experience": true,
+      "education": true,
+      "languages": true
+    },
+    "sectionOrder": ["summary", "skills", "projects", "experience", "education", "languages"]
+  },
+  "personal": {
+    "name": "Mohammed Elmouge",
+    "monogram": "ME",
+    "photo": "myphoto.jpeg",
+    "title": "Full-Stack Developer",
+    "subtitle": "Python \u00b7 Django \u00b7 React \u00b7 Vue \u00b7 AI/ML",
+    "email": "jakjak200018@gmail.com",
+    "phone": "01556123991",
+    "location": "Port Said, Egypt",
+    "github": "https://github.com/jminoktit"
+  },
+  "summary": "Full-stack developer with strong expertise in Python/Django and modern JavaScript frameworks. Experienced in building AI-powered applications (LLM integration, speech-to-text, NLP), real-time systems (WebSockets), 3D web graphics (Three.js), e-commerce platforms, and RESTful APIs. Passionate about clean architecture, OOP design, and production-ready deployments.",
+  "skills": [
+    {
+      "category": "Backend",
+      "tags": ["Python", "Django", "Django REST", "Flask", "Channels", "PostgreSQL", "SQLite", "Redis"]
+    },
+    {
+      "category": "Frontend",
+      "tags": ["React", "Vue 3", "Pinia", "Three.js", "HTML5 Canvas", "JavaScript ES6", "Vite", "Axios"]
+    },
+    {
+      "category": "AI / ML",
+      "tags": ["Ollama", "LangChain", "Claude API", "faster-whisper", "NLTK", "scikit-learn"]
+    },
+    {
+      "category": "DevOps & Tools",
+      "tags": ["Docker", "Git", "Render", "Netlify", "Cloudinary", "Gunicorn", "Daphne"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "WhatsApp Clone \u2014 Real-Time Chat",
+      "url": "https://github.com/jminoktit/whatsapp-clone",
+      "tech": ["Django 5.2", "Channels", "Redis", "React 18", "WebSocket", "JWT", "Docker", "PostgreSQL"],
+      "description": "Full-stack real-time messaging application with 1-on-1 chat, typing indicators, read receipts, reactions, voice messages, and Cloudinary media storage. WebSocket-powered via Django Channels with Redis channel layers.",
+      "features": ["Real-time bidirectional communication", "JWT authentication", "Mobile-first responsive UI", "Docker multi-container deployment"]
+    },
+    {
+      "name": "Aura Book \u2014 E-Commerce Platform",
+      "url": "https://github.com/jminoktit/aura-book",
+      "tech": ["Django REST", "Vue 3", "Pinia", "JWT", "Payment Gateways"],
+      "description": "Full e-commerce SPA for stationery and notebooks. Features product management, shopping cart, order checkout, dual-role system (admin/seller), multiple payment methods (COD, Vodafone Cash, Instapay, Fawry, Credit Card), and social auth.",
+      "features": ["Arabic RTL support", "SPA with Vue Router & Pinia", "Multiple payment integrations", "Comprehensive REST API"]
+    },
+    {
+      "name": "AI Multi-Agent System",
+      "url": "https://github.com/jminoktit/ai-agent-oop",
+      "tech": ["Django", "Ollama", "LLM", "Docker", "REST API"],
+      "description": "Multi-agent AI platform with 5 specialized agents: ChatBot (conversation + keyboard detection), CodeBot (programming & execution), DataBot (CSV/JSON analysis), ResearchBot (web search & summarization), and PlannerBot (cross-agent task planning). Integrates with Ollama local LLM.",
+      "features": ["Multi-agent OOP architecture", "Local LLM integration (Ollama)", "Docker + production deployment"]
+    },
+    {
+      "name": "AI Meeting Summarizer",
+      "url": "https://github.com/jminoktit/ai-meeting-summarizer",
+      "tech": ["Django", "faster-whisper", "NLTK", "scikit-learn"],
+      "description": "Audio/video meeting summarization tool. Upload media files via drag-and-drop, backend processes speech-to-text with faster-whisper, then generates extractive summaries using NLTK, sumy, and scikit-learn.",
+      "features": ["Speech-to-text (Whisper)", "NLP summarization pipeline", "Drag-and-drop file upload", "Tabbed transcript/summary UI"]
+    },
+    {
+      "name": "SketchUp Web \u2014 3D Kitchen Designer",
+      "url": "https://github.com/jminoktit/sketchup-web",
+      "tech": ["Three.js", "Django REST", "JavaScript ES6", "Vite"],
+      "description": "Browser-based 3D kitchen design tool. Users draw 2D shapes, extrude to 3D, add kitchen components (cabinets, countertops, appliances). Powered by Three.js with orbit controls, raycasting, and push/pull geometry engine.",
+      "features": ["3D rendering with Three.js", "Complex geometry operations", "Full CRUD REST backend", "Internationalization (i18n)"]
+    },
+    {
+      "name": "ERD Diagram Tool (build_ARD)",
+      "url": "https://github.com/jminoktit/erd-diagram-tool",
+      "tech": ["Vanilla JS", "HTML5 Canvas", "OOP"],
+      "description": "Browser-based ERD drawing tool (like draw.io for database schemas). Create tables, set PK/FK constraints, draw relationships with bezier curves, zoom/pan canvas, generate SQL CREATE statements, save/load JSON diagrams.",
+      "features": ["Canvas rendering + bezier curves", "SQL generation from diagrams", "JSON save/load serialization", "Full Arabic RTL support"]
+    },
+    {
+      "name": "Internship Projects (Flask & Django APIs)",
+      "url": "https://github.com/jminoktit/internship-tasks",
+      "tech": ["Flask", "Django 6.0", "DRF", "REST"],
+      "description": "Four internship tasks demonstrating API development progression: URL Shortener (Flask, OOP services), Event Registration API (capacity tracking, waitlisting), Restaurant Management API (menu, reservations, inventory, low-stock alerts), and Job Board API (full application workflow)."
+    },
+    {
+      "name": "Sedap Talkha \u2014 Business Website",
+      "url": "https://github.com/jminoktit/sedap-talkha",
+      "tech": ["HTML5", "CSS3", "JavaScript", "Netlify"],
+      "description": "Static business website for a micro-finance association in Port Said, Egypt. Features hero section, services grid, WhatsApp integration, and mobile-responsive RTL design."
+    }
+  ],
+  "experience": [
+    {
+      "title": "Freelance Full-Stack Developer",
+      "meta": "Self-Employed \u00b7 2024 \u2013 Present",
+      "description": "Developed and deployed multiple production-grade web applications across diverse domains: AI/LLM platforms, e-commerce, real-time messaging, 3D design tools, and business websites."
+    },
+    {
+      "title": "Software Engineering Intern",
+      "meta": "Remote Internship \u00b7 2024",
+      "description": "Completed 4 hands-on projects building REST APIs with Flask and Django 6.0: URL shortener, event registration, restaurant management, and job board systems with clean OOP architecture."
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor's in Computer Science",
+      "meta": "Port Said University, Egypt \u00b7 Expected 2026"
+    }
+  ],
+  "languages": [
+    { "name": "Arabic", "level": "Native" },
+    { "name": "English", "level": "Professional" }
+  ]
+}

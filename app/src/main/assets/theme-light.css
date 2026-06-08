@@ -1,0 +1,22 @@
+:root {
+  --bg-body: #f1f5f9;
+  --bg-container: #ffffff;
+  --bg-card: #f8fafc;
+  --bg-skill: #ffffff;
+  --border: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #1e293b;
+  --text-muted: #475569;
+  --text-dim: #64748b;
+  --accent: #2563eb;
+  --accent-light: #1d4ed8;
+  --accent-gradient: linear-gradient(135deg, #2563eb, #7c3aed);
+  --avatar-bg: linear-gradient(135deg, #2563eb, #7c3aed);
+  --header-bg: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  --header-accent: #2563eb;
+  --dot-color: #2563eb;
+  --tag-bg: #ffffff;
+  --tag-color: #2563eb;
+  --tag-border: #e2e8f0;
+  --shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+}

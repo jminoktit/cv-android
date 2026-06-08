@@ -1,0 +1,22 @@
+:root {
+  --bg-body: #0f172a;
+  --bg-container: #1e293b;
+  --bg-card: #0f172a;
+  --bg-skill: #1e293b;
+  --border: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --accent: #3b82f6;
+  --accent-light: #93c5fd;
+  --accent-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  --avatar-bg: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  --header-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --header-accent: #3b82f6;
+  --dot-color: #3b82f6;
+  --tag-bg: #1e293b;
+  --tag-color: #93c5fd;
+  --tag-border: #334155;
+  --shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+}

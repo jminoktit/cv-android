@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0F172A"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:textSize="24sp"
+            android:textColor="#F8FAFC"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Customize your CV appearance"
+            android:textSize="14sp"
+            android:textColor="#64748B"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Theme -->
+        <TextView style="@style/SettingsLabel" android:text="Theme" android:layout_marginBottom="8dp" />
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/themeGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:chipSpacing="8dp"
+            android:layout_marginBottom="20dp"
+            app:singleSelection="true">
+            <com.google.android.material.chip.Chip style="@style/SettingsChip" android:id="@+id/chipDark" android:text="Dark" app:chipIcon="@drawable/ic_circle_dark" />
+            <com.google.android.material.chip.Chip style="@style/SettingsChip" android:id="@+id/chipLight" android:text="Light" app:chipIcon="@drawable/ic_circle_light" />
+            <com.google.android.material.chip.Chip style="@style/SettingsChip" android:id="@+id/chipOcean" android:text="Ocean" app:chipIcon="@drawable/ic_circle_ocean" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- Font Size -->
+        <TextView style="@style/SettingsLabel" android:text="Font Size" android:layout_marginBottom="8dp" />
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/fontGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:chipSpacing="8dp"
+            android:layout_marginBottom="20dp"
+            app:singleSelection="true">
+            <com.google.android.material.chip.Chip style="@style/SettingsChip" android:id="@+id/chipSmall" android:text="Small" />
+            <com.google.android.material.chip.Chip style="@style/SettingsChip" android:id="@+id/chipMedium" android:text="Medium" />
+            <com.google.android.material.chip.Chip style="@style/SettingsChip" android:id="@+id/chipLarge" android:text="Large" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- View Mode -->
+        <TextView style="@style/SettingsLabel" android:text="View Mode" android:layout_marginBottom="8dp" />
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/viewModeGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:chipSpacing="8dp"
+            android:layout_marginBottom="20dp"
+            app:singleSelection="true"
+            app:chipLayoutMode="wrapping">
+            <com.google.android.material.chip.Chip style="@style/SettingsChip" android:id="@+id/chipStandard" android:text="Standard" />
+            <com.google.android.material.chip.Chip style="@style/SettingsChip" android:id="@+id/chipMinimal" android:text="Minimal" />
+            <com.google.android.material.chip.Chip style="@style/SettingsChip" android:id="@+id/chipModern" android:text="Modern" />
+            <com.google.android.material.chip.Chip style="@style/SettingsChip" android:id="@+id/chipTimeline" android:text="Timeline" />
+            <com.google.android.material.chip.Chip style="@style/SettingsChip" android:id="@+id/chipGrid" android:text="Grid" />
+            <com.google.android.material.chip.Chip style="@style/SettingsChip" android:id="@+id/chipClassic" android:text="Classic" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- Toggles -->
+        <TextView style="@style/SettingsLabel" android:text="Toggles" android:layout_marginBottom="8dp" />
+
+        <com.google.android.material.card.MaterialCardView style="@style/SettingsCard">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <include layout="@layout/item_toggle" android:id="@+id/toggleCompact" />
+                <View style="@style/Divider" />
+                <include layout="@layout/item_toggle" android:id="@+id/toggleAvatar" />
+                <View style="@style/Divider" />
+                <include layout="@layout/item_toggle" android:id="@+id/toggleProjectLinks" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Section Visibility -->
+        <TextView style="@style/SettingsLabel" android:text="Section Visibility" android:layout_marginTop="20dp" android:layout_marginBottom="8dp" />
+        <com.google.android.material.card.MaterialCardView style="@style/SettingsCard">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:id="@+id/visibilityContainer">
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Section Order -->
+        <TextView style="@style/SettingsLabel" android:text="Section Order" android:layout_marginTop="20dp" android:layout_marginBottom="8dp" />
+        <com.google.android.material.card.MaterialCardView style="@style/SettingsCard">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:id="@+id/orderContainer">
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Add Section -->
+        <TextView style="@style/SettingsLabel" android:text="Add / Remove Sections" android:layout_marginTop="20dp" android:layout_marginBottom="8dp" />
+        <com.google.android.material.card.MaterialCardView style="@style/SettingsCard">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:hint="Section Name"
+                    app:boxStrokeColor="#3B82F6" app:hintTextColor="#64748B"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etNewSection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#F8FAFC"
+                        android:textColorHint="#64748B" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAddSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Add Section"
+                    app:backgroundTint="#3B82F6" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRemoveSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Remove Last Section"
+                    app:backgroundTint="#EF4444" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Reset -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnReset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Reset to Defaults"
+            app:backgroundTint="@android:color/transparent"
+            app:strokeColor="#334155"
+            app:strokeWidth="1dp"
+            android:textColor="#94A3B8" />
+
+        <View android:layout_height="40dp" android:layout_width="match_parent" />
+
+    </LinearLayout>
+</ScrollView>
