@@ -9,11 +9,10 @@
     </style>
 
     <style name="SettingsChip" parent="Widget.MaterialComponents.Chip.Filter">
-        <item name="chipBackgroundColor">#1E293B</item>
+        <item name="chipBackgroundColor">@color/chip_colors</item>
         <item name="chipStrokeColor">#334155</item>
         <item name="chipStrokeWidth">1dp</item>
         <item name="android:textColor">#93C5FD</item>
-        <item name="checkedChipBackgroundColor">#3B82F6</item>
         <item name="checkedIconVisible">false</item>
         <item name="chipIconVisible">true</item>
         <item name="chipIconSize">12dp</item>
