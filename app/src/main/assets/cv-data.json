@@ -100,6 +100,13 @@
       "url": "https://github.com/jminoktit/sedap-talkha",
       "tech": ["HTML5", "CSS3", "JavaScript", "Netlify"],
       "description": "Static business website for a micro-finance association in Port Said, Egypt. Features hero section, services grid, WhatsApp integration, and mobile-responsive RTL design."
+    },
+    {
+      "name": "CV Android App",
+      "url": "https://github.com/jminoktit/cv-android",
+      "tech": ["Kotlin", "Android SDK", "WebView", "Material Design", "GitHub Actions"],
+      "description": "Native Android app that wraps the CV in a WebView with a full native settings panel. Features include theme switching, font size control, section reordering (drag & drop), add/remove sections, view mode selection, and CI/CD with GitHub Actions for automatic APK builds.",
+      "features": ["Native settings with Material Design", "WebView JavaScript bridge", "Section drag-and-drop reorder", "GitHub Actions CI/CD", "Add/remove custom sections"]
     }
   ],
   "experience": [
